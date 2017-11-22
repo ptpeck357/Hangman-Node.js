@@ -1,26 +1,43 @@
 var inquirer = require('inquirer');
 
-var GuessLetter = require('./guessesConstructor');
+var beginGame = require('./letterConstructor');
+
+var newStartgame = new beginGame();
 
 var guess = 9;
 
-var askUser = function(){
+function generateWord(){
 
-	if(0 < guess){
-		inquirer.prompt([
+	newStartgame = new beginGame()
+}
+
+var askUser = function(){ 
+
+	if(0 < guess){ 
+
+		inquirer.prompt([ 
+
 			{
 				name: "guess",
 				type: "input", 
 				message: "Guess a letter!"
 			}
+
 		]).then(function(inquirerResponse) {
-				var guessFunction = new GuessLetter(inquirerResponse.guess);
-				guessFunction.printltr();
+
+				newStartgame.checkLetters(inquirerResponse.guess);
+
+				askUser();
+
   			});
 
 	} else {
-		console.log("You loose")
+
+		console.log("You loose");
+
 	};
 };
+
+generateWord();
 
 askUser();

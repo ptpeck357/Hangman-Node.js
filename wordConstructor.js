@@ -1,17 +1,15 @@
+var letterConstructor = require('./letterConstructor');
+
+
 var StartGame = function(){
-	
-	var wordBank = require('./wordBank');
 
-	this.wordInPlay = wordBank[Math.floor(Math.random() * wordBank.length)];
+	this.wordBank = ["backwords", "online", "radio", "sold", "cruise", "wanted",
+	"unforgettable", "stay", "vacation", "beaching"];
 
-	this.lettersOftheWord = this.wordInPlay.split("");
+	this.chosenWord = function(){
 
-	this.LettersinArray = function(){
-
-		this.array.push(this.lettersOftheWord);
-
-		console.log(this.array);
-
+		return this.wordBank[Math.floor(Math.random() * this.wordBank.length)];
+		
 	};
 };
 
@@ -19,4 +17,4 @@ module.exports = StartGame;
 
 
 
-
+	
