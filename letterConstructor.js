@@ -22,14 +22,9 @@ var beginGame = function() {
 
 		};
 
-		console.log((this.lettersInWord).join(" "));
-
-
 		this.checkLetters = function(userkey){
 
 			this.flag = false;
-
-			this.result = false;
 
 			for (var i = 0; i < this.numBlanks; i++) {
 
@@ -46,16 +41,15 @@ var beginGame = function() {
 
 				// Populate the blanksAndSuccesses with every instance of the letter.
 				if (this.randomWord[i] === userkey) {
+
 					// Here we set the specific space in blanks and letter equal to the letter when there is a match.
 					this.lettersInWord[i] = userkey;
 				}
-			}
-			// Logging for testing.
-			console.log(this.lettersInWord.join(" "));
-			}
+			};
 
-			// If the letter doesn't exist at all...
-			else {
+			console.log(this.lettersInWord.join(" "));
+
+			} else {
 
 				// ..then we add the letter to the list of wrong letters, and we subtract one of the guesses.
 				this.wrongGuesses.push(userkey);
@@ -63,23 +57,16 @@ var beginGame = function() {
 				// numGuesses--;
 				this.turns--;
 
-				console.log("Guesses remaining " + this.turns)
+				console.log("\nGuesses remaining: " + this.turns + "\n")
 			}	
 
-		}
+			if (this.lettersInWord.toString() === this.underscore.toString()) {
 
-		if (this.lettersInWord.toString() === this.underscore.toString()) {
+				console.log("\nYou win!");
 
-			console.log("You win!");
-
+			};
 		}
 };
-
-
-
-// function checkLetters(userkey) {
-
-		
 
 module.exports = beginGame;
 

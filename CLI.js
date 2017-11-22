@@ -8,7 +8,8 @@ var guess = 9;
 
 function generateWord(){
 
-	newStartgame = new beginGame()
+	newStartgame = new beginGame();
+
 }
 
 var askUser = function(){ 
@@ -41,3 +42,4 @@ var askUser = function(){
 generateWord();
 
 askUser();
+
