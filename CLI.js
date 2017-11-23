@@ -1,45 +1,67 @@
 var inquirer = require('inquirer');
 
-var beginGame = require('./letterConstructor');
+var letterConstructor = require('./letterConstructor');
 
-var newStartgame = new beginGame();
+var guess;
 
-var guess = 9;
 
-function generateWord(){
+function beginGame(){
 
-	newStartgame = new beginGame();
+	var newStartgame = new letterConstructor();
 
-}
+	var Askuser = function(){ 
 
-var askUser = function(){ 
+		guess = newStartgame.turns;
 
-	if(0 < guess){ 
+		if(0 < guess){ 
 
-		inquirer.prompt([ 
+			inquirer.prompt([ 
 
-			{
-				name: "guess",
-				type: "input", 
-				message: "Guess a letter!"
-			}
+				{
+					name: "guess",
+					type: "input", 
+					message: "\nGuess a letter!"
+				}
 
-		]).then(function(inquirerResponse) {
+			]).then(function(inquirerResponse) {
 
-				newStartgame.checkLetters(inquirerResponse.guess);
+					newStartgame.checkLetters(inquirerResponse.guess);
 
-				askUser();
+					Askuser();
 
-  			});
+					if (newStartgame.lettersInWord.toString() === newStartgame.underscore.toString()) {
 
-	} else {
+						console.log("\nYou got it right! Next word!\n");
 
-		console.log("You loose");
+					};
 
+	  			});
+
+		} else {
+
+			console.log("You loose");
+
+			inquirer.prompt([
+
+				{
+				    name: "playagain",
+					type: "confirm",
+				    message: "Want to play again?"
+				}
+
+			]).then(function(response){
+
+				if(response.playagain){
+
+										
+				};
+			});
+
+		};
 	};
+
+	Askuser();
 };
 
-generateWord();
-
-askUser();
+beginGame();
 
