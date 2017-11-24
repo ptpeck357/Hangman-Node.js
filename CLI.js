@@ -77,7 +77,7 @@ var Askuser = function(){
 
 			} else {
 
-				console.log("Thanks for playing!");
+				console.log("\nThanks for playing!");
 
 			};
 		});
