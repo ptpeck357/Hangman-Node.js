@@ -7,7 +7,7 @@ var letterConstructor = require('./letterConstructor');
 
 var guess;
 
-
+//Creating a new instance of the letterconstructor
 var newStartgame = new letterConstructor();
 
 var Askuser = function(){ 
@@ -15,9 +15,10 @@ var Askuser = function(){
 	//Grabs the number of guesses from the constructor
 	guess = newStartgame.turns;
 
+	//Runs the code if the user's guesses are above zero
 	if(0 < guess){ 
 
-		//Asks the user for a letter prompt
+		//Asks the user to guess a letter 
 		inquirer.prompt([ 
 
 			{
@@ -46,6 +47,7 @@ var Askuser = function(){
 
 						console.log("\nYou got it right! Next word!\n");
 
+						//Calls another instance of the letter constructor
 						newStartgame = new letterConstructor();
 
 					};
@@ -70,9 +72,10 @@ var Askuser = function(){
 			//If the user says yes, runs the game again
 			if(response.playagain){
 
-
+				//Calls another instance of the letter constructor
 				newStartgame = new letterConstructor();
 				
+				//Gets out of the current function and calls the Askuser function
 				return Askuser();
 
 			} else {
@@ -85,6 +88,7 @@ var Askuser = function(){
 	};
 };
 
+//Initializes the Askuser function for the first time
 Askuser();
 
 

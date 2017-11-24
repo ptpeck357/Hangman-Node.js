@@ -6,7 +6,7 @@ var BeginGame = function() {
 	//Calls a new instance of the wordconstructor
 	var newStartgame = new wordConstructor();
 
-	//
+	//Holds the dashes for the length of the random word
   	this.lettersInWord = [];
 
   	//Array to hold the letters already guessed
@@ -28,6 +28,7 @@ var BeginGame = function() {
 
 	};
 
+	//Function that compares the user input to the actual word
 	this.checkLetters = function(userkey){
 
 		//See if the userkey exists in the wrong guesses array
@@ -43,6 +44,7 @@ var BeginGame = function() {
 
 		};
 
+		//If the letter hadn't already guess that letter, then run this code
 		if (letterExist === false) {
 
 			this.flag = false;
@@ -56,15 +58,15 @@ var BeginGame = function() {
 				};
 			};
 
-			// If the letter exists somewhere in the word, then figure out exactly where (which indices).
+			// If the letter exists somewhere in the word, then figure out exactly where.
 			if (this.flag) {
 
 				for (var i = 0; i < this.underscore.length; i++) {
 
-					// Populate the dashes with every instance of the letter.
+					//Populate the dashes with every instance of the letter.
 					if (this.randomWord[i] === userkey) {
 
-						// Here we set the specific space in blanks and letter equal to the letter when there is a match.
+						//Here we set the specific space in blanks and letter equal to the letter when there is a match.
 						this.lettersInWord[i] = userkey;
 
 					};
@@ -78,10 +80,10 @@ var BeginGame = function() {
 
 				console.log("\nIncorrect!")
 
-				//add the letter to the list of wrong letters, and we subtract one of the guesses.
+				//Add the letter to the list of wrong letters, and we subtract one of the guesses.
 				this.wrongGuesses.push(userkey);
 
-				// numGuesses--;
+				//Number of turns decreases;
 				this.turns--;
 
 				console.log("\nGuesses remaining: " + this.turns + "\n")

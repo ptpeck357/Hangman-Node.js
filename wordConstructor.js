@@ -1,6 +1,3 @@
-var letterConstructor = require('./letterConstructor');
-
-
 var StartGame = function(){
 	
 	//List of random word
@@ -8,7 +5,7 @@ var StartGame = function(){
 	"unforgettable", "stay", "vacation", "beaching", "summertime", "alright", "castaway", "toes", "roots",
 	"lit", "today", "smooth", "up", "yeah"];
 
-	//function that chooses word
+	//function that chooses random word
 	this.chosenWord = function(){
 
 		return this.wordBank[Math.floor(Math.random() * this.wordBank.length)];
