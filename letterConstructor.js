@@ -1,88 +1,96 @@
 var wordConstructor = require('./wordConstructor');
 
+
 var BeginGame = function() {
 
-		var newStartgame = new wordConstructor();
+	//Calls a new instance of the wordconstructor
+	var newStartgame = new wordConstructor();
 
-	  	this.lettersInWord = [];
+	//
+  	this.lettersInWord = [];
 
-	  	this.wrongGuesses = [];
+  	//Array to hold the letters already guessed
+  	this.wrongGuesses = [];
 
-	  	this.turns = 9;
+  	//Amount of guesses the user has
+  	this.turns = 9;
 
-		this.randomWord = newStartgame.chosenWord();
+  	//Grabs random word from word constructor
+	this.randomWord = newStartgame.chosenWord();
 
-		this.underscore = this.randomWord.split("");
+	//Splits the random word into individual letters
+	this.underscore = this.randomWord.split("");
 
-	 	for (var i = 0; i < this.underscore.length; i++) {
+	//Loops through the array of the random word and prints dashes for the length of the word
+ 	for (var i = 0; i < this.underscore.length; i++) {
 
-	 		this.lettersInWord.push("_");
+ 		this.lettersInWord.push("_");
 
-		};
+	};
 
-		this.checkLetters = function(userkey){
+	this.checkLetters = function(userkey){
 
-			//See if the userkey exists in the wrong guesses array
-			var letterExist = false;
+		//See if the userkey exists in the wrong guesses array
+		var letterExist = false;
 
-			for (var i = 0; i < this.wrongGuesses.length; i++) {
+		for (var i = 0; i < this.wrongGuesses.length; i++) {
 
-				if(userkey === this.wrongGuesses[i]){
+			if(userkey === this.wrongGuesses[i]){
 
-					letterExist = true;
-
-				};
+				letterExist = true;
 
 			};
 
-			if (letterExist === false) {
+		};
 
-				this.flag = false;
+		if (letterExist === false) {
+
+			this.flag = false;
+
+			for (var i = 0; i < this.underscore.length; i++) {
+
+				if(this.randomWord[i] === userkey) {
+
+					this.flag = true;
+
+				};
+			};
+
+			// If the letter exists somewhere in the word, then figure out exactly where (which indices).
+			if (this.flag) {
 
 				for (var i = 0; i < this.underscore.length; i++) {
 
-					if(this.randomWord[i] === userkey) {
+					// Populate the dashes with every instance of the letter.
+					if (this.randomWord[i] === userkey) {
 
-						this.flag = true;
+						// Here we set the specific space in blanks and letter equal to the letter when there is a match.
+						this.lettersInWord[i] = userkey;
 
 					};
 				};
 
-				// If the letter exists somewhere in the word, then figure out exactly where (which indices).
-				if (this.flag) {
+				console.log("\nCorrect!\n")
 
-					// Loop through the word.
-					for (var i = 0; i < this.underscore.length; i++) {
+				console.log(this.lettersInWord.join(" ") + "\n\n");
 
-						// Populate the blanksAndSuccesses with every instance of the letter.
-						if (this.randomWord[i] === userkey) {
+			} else {
 
-							// Here we set the specific space in blanks and letter equal to the letter when there is a match.
-							this.lettersInWord[i] = userkey;
+				console.log("\nIncorrect!")
 
-						};
-					};
+				//add the letter to the list of wrong letters, and we subtract one of the guesses.
+				this.wrongGuesses.push(userkey);
 
-					console.log("\nCorrect!\n")
+				// numGuesses--;
+				this.turns--;
 
-					console.log(this.lettersInWord.join(" ") + "\n\n");
+				console.log("\nGuesses remaining: " + this.turns + "\n")
 
-				} else {
+				
+			};	
 
-					console.log("\nIncorrect!")
-					// ..then we add the letter to the list of wrong letters, and we subtract one of the guesses.
-					this.wrongGuesses.push(userkey);
-
-					// numGuesses--;
-					this.turns--;
-
-					console.log("\nGuesses remaining: " + this.turns + "\n")
-
-					
-				};	
-
-			};
 		};
+	};
 };
 
 module.exports = BeginGame;
