@@ -43,7 +43,7 @@ var Askuser = function(){
 						//Asks the user for another letter
 						Askuser();
 
-					if (newStartgame.lettersInWord.toString() === newStartgame.underscore.toString()) {
+					if (newStartgame.lettersInWord.toString().toLowerCase() == newStartgame.underscore.toString().toLowerCase()) {
 
 						console.log("\nYou got it right! Next word!\n");
 

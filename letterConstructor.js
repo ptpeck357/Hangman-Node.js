@@ -63,11 +63,17 @@ var BeginGame = function() {
 
 				for (var i = 0; i < this.underscore.length; i++) {
 
-					//Populate the dashes with every instance of the letter.
-					if (this.randomWord[i] === userkey) {
+					//If the first letter equals the user's input, make it capitalized
+					if (this.randomWord[0] === userkey) {
 
-						//Here we set the specific space in blanks and letter equal to the letter when there is a match.
-						this.lettersInWord[i] = userkey;
+						this.lettersInWord[0] = userkey.toUpperCase();;
+
+					} 
+
+					//Else set the specific space in blanks and letter equal to the letter when there is a match.
+					else if(this.randomWord[i] === userkey) {
+
+						this.lettersInWord[i] = userkey
 
 					};
 				};
