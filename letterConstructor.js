@@ -63,20 +63,20 @@ var BeginGame = function() {
 						};
 					};
 
-					console.log("Correct!\n")
+					console.log("\nCorrect!\n")
 
-					console.log(this.lettersInWord.join(" "));
+					console.log(this.lettersInWord.join(" ") + "\n\n");
 
 				} else {
 
-					console.log("Incorrect!\n")
+					console.log("\nIncorrect!")
 					// ..then we add the letter to the list of wrong letters, and we subtract one of the guesses.
 					this.wrongGuesses.push(userkey);
 
 					// numGuesses--;
 					this.turns--;
 
-					console.log("Guesses remaining: " + this.turns)
+					console.log("\nGuesses remaining: " + this.turns + "\n")
 
 					
 				};	

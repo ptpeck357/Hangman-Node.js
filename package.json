@@ -18,6 +18,6 @@
   "homepage": "https://github.com/ptpeck357/Constructor-Hangman#readme",
   "dependencies": {
     "inquirer": "^4.0.0",
-    "random-word": "^2.0.0"
+    "is-letter": "^1.1.1"
   }
 }

@@ -1,5 +1,7 @@
 var inquirer = require('inquirer');
 
+var isLetter = require('is-letter');
+
 var letterConstructor = require('./letterConstructor');
 
 var guess;
@@ -7,7 +9,7 @@ var guess;
 
 function beginGame(){
 
-	var newStartgame = new letterConstructor();
+var newStartgame = new letterConstructor();
 
 	var Askuser = function(){ 
 
@@ -20,20 +22,30 @@ function beginGame(){
 				{
 					name: "guess",
 					type: "input", 
-					message: "\nGuess a letter!"
+					message: "Guess a letter!",
+
+					//Checks if the user's input is a valid character
+					validate: function(event) {
+				          if (event) {
+				            return isLetter(event);
+				          }
+				          return false;
+				        }
 				}
 
 			]).then(function(inquirerResponse) {
 
-					newStartgame.checkLetters(inquirerResponse.guess);
+							newStartgame.checkLetters(inquirerResponse.guess);
 
-					Askuser();
+							Askuser();
 
-					if (newStartgame.lettersInWord.toString() === newStartgame.underscore.toString()) {
+						if (newStartgame.lettersInWord.toString() === newStartgame.underscore.toString()) {
 
-						console.log("\nYou got it right! Next word!\n");
+							console.log("\nYou got it right! Next word!\n");
 
-					};
+							newStartgame = new letterConstructor();
+
+						};
 
 	  			});
 
@@ -53,6 +65,7 @@ function beginGame(){
 
 				if(response.playagain){
 
+					newStartgame = new letterConstructor();
 										
 				};
 			});
@@ -60,7 +73,8 @@ function beginGame(){
 		};
 	};
 
-	Askuser();
+Askuser();
+
 };
 
 beginGame();
