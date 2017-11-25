@@ -24,7 +24,15 @@ var BeginGame = function() {
 	//Loops through the array of the random word and prints dashes for the length of the word
  	for (var i = 0; i < this.underscore.length; i++) {
 
- 		this.lettersInWord.push("_");
+ 		if(this.underscore[i] === " "){
+
+ 			this.lettersInWord[i] = " ";
+
+ 		} else {
+
+ 			this.lettersInWord.push("_");
+
+ 		};
 
 	};
 
@@ -45,13 +53,13 @@ var BeginGame = function() {
 		};
 
 		//If the letter hadn't already guess that letter, then run this code
-		if (letterExist === false) {
+		if (!letterExist) {
 
 			this.flag = false;
 
 			for (var i = 0; i < this.underscore.length; i++) {
 
-				if(this.randomWord[i] === userkey) {
+				if(this.underscore[i] === userkey) {
 
 					this.flag = true;
 
@@ -63,28 +71,21 @@ var BeginGame = function() {
 
 				for (var i = 0; i < this.underscore.length; i++) {
 
-					//If the first letter equals the user's input, make it capitalized
-					if (this.randomWord[0] === userkey) {
+					// If the first letter equals the user's input, make it capitalized
+					if (this.underscore[i] === userkey) {
 
-						this.lettersInWord[0] = userkey.toUpperCase();;
-
-					} 
-
-					//Else set the specific space in blanks and letter equal to the letter when there is a match.
-					else if(this.randomWord[i] === userkey) {
-
-						this.lettersInWord[i] = userkey
+						this.lettersInWord[i] = userkey;
 
 					};
 				};
 
-				console.log("\nCorrect!\n")
+				console.log("\nCorrect!\n");
 
 				console.log(this.lettersInWord.join(" ") + "\n\n");
 
 			} else {
 
-				console.log("\nIncorrect!")
+				console.log("\nIncorrect!");
 
 				//Add the letter to the list of wrong letters, and we subtract one of the guesses.
 				this.wrongGuesses.push(userkey);
@@ -92,7 +93,7 @@ var BeginGame = function() {
 				//Number of turns decreases;
 				this.turns--;
 
-				console.log("\nGuesses remaining: " + this.turns + "\n")
+				console.log("\nGuesses remaining: " + this.turns + "\n");
 
 				
 			};	
