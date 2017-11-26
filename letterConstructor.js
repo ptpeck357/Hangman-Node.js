@@ -39,7 +39,7 @@ var BeginGame = function() {
 	//Function that compares the user input to the actual word
 	this.checkLetters = function(userkey){
 
-		//See if the userkey exists in the wrong guesses array
+		//See if the userkey exists in the wrong guess array
 		var letterExist = false;
 
 		for (var i = 0; i < this.wrongGuesses.length; i++) {
@@ -52,7 +52,7 @@ var BeginGame = function() {
 
 		};
 
-		//If the letter hadn't already guess that letter, then run this code
+		//If the letter hadn't already being guessed, run this code
 		if (!letterExist) {
 
 			this.flag = false;
@@ -66,12 +66,11 @@ var BeginGame = function() {
 				};
 			};
 
-			// If the letter exists somewhere in the word, then figure out exactly where.
+			// If the letter exists somewhere in the word, then figure out where.
 			if (this.flag) {
 
 				for (var i = 0; i < this.underscore.length; i++) {
 
-					// If the first letter equals the user's input, make it capitalized
 					if (this.underscore[i] === userkey) {
 
 						this.lettersInWord[i] = userkey;
@@ -87,7 +86,7 @@ var BeginGame = function() {
 
 				console.log("\nIncorrect!");
 
-				//Add the letter to the list of wrong letters, and we subtract one of the guesses.
+				//Add the letter to the list of wrong letters.
 				this.wrongGuesses.push(userkey);
 
 				//Number of turns decreases;
