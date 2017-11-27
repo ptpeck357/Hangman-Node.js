@@ -43,6 +43,7 @@ var Askuser = function(){
 						//Asks the user for another letter
 						Askuser();
 
+					//Compares the user's input array to the actual word
 					if (newStartgame.lettersInWord.toString() == newStartgame.underscore.toString()) {
 
 						console.log("\nYou got it right! Next word!\n");
@@ -75,8 +76,8 @@ var Askuser = function(){
 				//Calls another instance of the letter constructor
 				newStartgame = new letterConstructor();
 				
-				//Gets out of the current function and calls the Askuser function
-				return Askuser();
+				//and calls the Askuser function
+				Askuser();
 
 			} else {
 
